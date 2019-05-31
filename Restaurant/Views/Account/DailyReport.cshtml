@@ -1,0 +1,9 @@
+﻿@using (Ajax.BeginForm("DailyReport", "Account", null))
+{
+    <div class="text-right mg-tb5">
+        Select Date <input type="text" id="dateTxt" name="dateTxt" />
+        <input type="submit" value="Rebuild Report" />
+    </div>
+    Html.RenderPartial("PartialDailyReport");
+}
+<script src="~/Scripts/DailyReport.js"></script>

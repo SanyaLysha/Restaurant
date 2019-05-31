@@ -1,0 +1,55 @@
+﻿<script id="userTmpl" type="text/x-jquery-tmpl">
+    <tr>
+        <td>${FirstName}</td>
+        <td>${LastName}</td>
+        <td>${Email}</td>
+        <td>${Phone}</td>
+        <td>${Role}</td>
+    </tr>
+</script>
+<script id="staffTmpl" type="text/x-jquery-tmpl">
+    <tr>
+        <td>${FirstName}</td>
+        <td>${LastName}</td>
+        <td>${Phone}</td>
+        <td>${Salary} UAH</td>
+        <td>${Role}</td>
+    </tr>
+</script>
+
+
+<h2 class="text-center">User Managment</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h3 class="text-center">Users</h3>
+        <table class="table table-striped bg-info">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="UsersTable"></tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h3 class="text-center">Staff</h3>
+        <table class="table table-striped bg-info">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Salary</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="StaffTable"></tbody>
+        </table>
+    </div>
+</div>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundle/admin")

@@ -1,0 +1,138 @@
+﻿@model Restaurant.Models.Reports.DailyReportViewModel
+
+<h3 class="text-center">Daily Report</h3>
+
+<div class="text-right"><strong>Date: </strong>@Model.dt.ToShortDateString()</div>
+
+<h4 class="brd-top-bottom">Sold Items</h4>
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-striped bg-info">
+            <thead>
+                <tr>
+                    <th>Dish</th>
+                    <th>Number</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody id="KitchenItems">
+                @foreach (var k in Model.kitchenOrders)
+                {
+                    <tr>
+                        <td>@k.Name</td>
+                        <td>@k.Number</td>
+                        <td>@k.Cost UAH</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped bg-info">
+            <thead>
+                <tr>
+                    <th>Drink</th>
+                    <th>Number</th>
+                    <th>Cost</th>
+                </tr>
+            </thead>
+            <tbody id="DrinkItems">
+                @foreach (var k in Model.barOrders)
+                {
+                    <tr>
+                        <td>@k.Name</td>
+                        <td>@k.Number</td>
+                        <td>@k.Cost UAH</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="text-right bg-success pd-tb5 mg-tb5"><strong>Total Amount: </strong>@Model.TotalAmount UAH</div>
+
+<h4 class="brd-top-bottom">Waiters</h4>
+<div id="WaitersAndOrders">
+    <table class="table table-striped bg-info">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone</th>
+                <th>Salary</th>
+                <th>Orders Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in Model.Waiters)
+            {
+                <tr>
+                    <td>@w.FirstName</td>
+                    <td>@w.LastName</td>
+                    <td>@w.Phone</td>
+                    <td>@w.Salary UAH</td>
+                    <td>@w.OrdersCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="text-right bg-success pd-tb5 mg-tb5">
+    <strong>Total Orders Count: </strong>
+    @Model.OrdersCount
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h4 class="text-center brd-top-bottom">Today Trend Dish</h4>
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Dish</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.TrendDishes)
+                {
+                    <tr>
+                        <td>@t.Name</td>
+                        <td>@t.Cost UAH</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <h4 class="text-center brd-top-bottom">Today Trend Drink</h4>
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Drink</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.TrendDrinks)
+                {
+                    <tr>
+                        <td>@t.Name</td>
+                        <td>@t.Cost UAH</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="text-right bg-success pd-tb5 mg-tb5">
+    <strong>Number of Book Tables: </strong>
+    @Model.BookTablesCount
+</div>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
+
+</script>

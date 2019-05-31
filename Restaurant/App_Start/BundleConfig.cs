@@ -1,0 +1,36 @@
+﻿using System.Web.Optimization;
+
+namespace Restaurant
+{
+    public class BundleConfig
+    {
+        // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
+        public static void RegisterBundles(BundleCollection bundles)
+        {
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-{version}.js")
+                        .Include("~/Scripts/jQuery.tmpl.js")
+                        .Include("~/Scripts/jQuery.tmpl.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundle/tables").Include("~/Scripts/Tables.js"));
+
+            bundles.Add(new ScriptBundle("~/bundle/admin").Include("~/Scripts/Admin.js"));
+            bundles.Add(new ScriptBundle("~/bundle/DailyReport").Include("~/Scripts/DailyReport.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
+
+            // Use the development version of Modernizr to develop with and learn from. Then, when you're
+            // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                        "~/Scripts/modernizr-*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js"));
+
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/site.css"));
+        }
+    }
+}

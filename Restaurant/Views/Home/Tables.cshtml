@@ -1,0 +1,40 @@
+﻿
+<h3>@ViewBag.Message</h3>
+
+<script id="tableTmpl" type="text/x-jquery-tmpl">
+    <div id="${Id}" class="col-md-3" style="margin-bottom: 10px; background-color:">
+        <div>
+            <div class="tableHeader text-center">Table #${Id}</div>
+            <img class="img-responsive margin" src="@Url.Content("~/Images/x.jpg")"style="width:100%" />
+            <div class="tableStatus">Status ${Status}</div>
+            <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#bookTableModal" value="Book" />
+        </div>
+    </div>
+</script>
+<div class="modal modal fade" id="bookTableModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-inline " id="datepicker">
+                    <input type="text" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="listTables" class="row">
+
+</div>
+<link rel="stylesheet" href="@Url.Content("~/Content/Tables/Tables.css")">
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundle/tables")
