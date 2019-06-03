@@ -1,9 +1,12 @@
-﻿@using (Ajax.BeginForm("MonthlyReport", "Account", null))
+﻿@model Restaurant.Models.Reports.MonthlyReportViewModel
+@using (Html.BeginForm("MonthlyReport", "Account", null))
 {
     <div class="text-right mg-tb5">
-        Select Date <input type="text" id="dateTxt" name="dateTxt" />
+        Select Date
+        From <input type="text" id="dateTxtFrom" name="dateTxtFrom" value="@Model.dtFrom.ToShortDateString()" />
+        To <input type="text" id="dateTxtTo" name="dateTxtTo" value="@Model.dtTo.ToShortDateString()" />
         <input type="submit" value="Rebuild Report" />
     </div>
-
-    
+    Html.RenderPartial("PartialMonthlyReport");
 }
+<script src="~/Scripts/Reports/MonthlyReport.js"></script>

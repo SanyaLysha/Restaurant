@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
+using static Restaurant.Models.Reports.MonthlyReportViewModel;
 
 namespace Restaurant.Controllers
 {
@@ -125,6 +126,32 @@ namespace Restaurant.Controllers
                 });
             }
             return Json(products, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult GetClientsByDate(string dtFrom, string dtTo)
+        {
+            var sqltxt = "select Convert(date,o.Date) as Date, Count(*) as Number" +
+                " from Orders o " +
+                " where Convert(date, o.Date) between Convert(date, @dtFrom) and Convert(date, @dtTo) " +
+                " group by Convert(date, o.Date)";
+            SqlCommand cmd = new SqlCommand(sqltxt, conn);
+            cmd.Parameters.Add(new SqlParameter("@dtFrom", dtFrom));
+            cmd.Parameters.Add(new SqlParameter("@dtTo", dtTo));
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            conn.Open();
+            adapter.Fill(dataTable);
+            conn.Close();
+            List<Visit> visits = new List<Visit>();
+            foreach (DataRow r in dataTable.Rows)
+            {
+                visits.Add(new Visit()
+                {
+                    Date = Convert.ToDateTime(r["Date"]).ToShortDateString(),
+                    VisitorsNumber = (int)r["Number"]
+                });
+            }
+            return Json(visits, JsonRequestBehavior.AllowGet);
         }
     }
 }

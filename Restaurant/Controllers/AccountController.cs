@@ -73,11 +73,28 @@ namespace Restaurant.Controllers
             DailyReportViewModel model = new DailyReportViewModel(new DateTime(2019, 5, 29));
             return View(model);
         }
+
         [AllowAnonymous]
         [HttpPost]
         public ActionResult DailyReport(string dateTxt)
         {
             DailyReportViewModel model = new DailyReportViewModel(Convert.ToDateTime(dateTxt));
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult MonthlyReport()
+        {
+            var dt = DateTime.Now;
+            MonthlyReportViewModel model = new MonthlyReportViewModel(Convert.ToDateTime(dt), Convert.ToDateTime(dt.AddMonths(-1)));
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult MonthlyReport(string dateTxtFrom, string dateTxtTo)
+        {
+            MonthlyReportViewModel model = new MonthlyReportViewModel(Convert.ToDateTime(dateTxtFrom), Convert.ToDateTime(dateTxtTo));
             return View(model);
         }
         //

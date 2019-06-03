@@ -15,7 +15,7 @@ namespace Restaurant
             bundles.Add(new ScriptBundle("~/bundle/tables").Include("~/Scripts/Tables.js"));
 
             bundles.Add(new ScriptBundle("~/bundle/admin").Include("~/Scripts/Admin.js"));
-            bundles.Add(new ScriptBundle("~/bundle/DailyReport").Include("~/Scripts/DailyReport.js"));
+            bundles.Add(new ScriptBundle("~/bundle/DailyReport").Include("~/Scripts/Reports/DailyReport.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

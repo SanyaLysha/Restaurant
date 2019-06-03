@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -44,7 +45,7 @@
                         </a>
                         <div class="dropdown-menu" style="background-color:#101010">
                             @Html.ActionLink("Daily", "DailyReport", "Account", "", new { @class = "nav-dropdown-item" })
-                            @Html.ActionLink("Monthly", "", "", "", new { @class = "nav-dropdown-item" })
+                            @Html.ActionLink("Monthly", "MonthlyReport", "Account", "", new { @class = "nav-dropdown-item" })
                             @Html.ActionLink("Annualy", "", "", "", new { @class = "nav-dropdown-item" })
                         </div>
                     </li>
