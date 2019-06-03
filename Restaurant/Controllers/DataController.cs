@@ -99,8 +99,9 @@ namespace Restaurant.Controllers
         [HttpGet]
         public ActionResult GetTodaySoldDrinks()
         {
-            var staff = (from ordr in db.BarOrders
-                         join drink in db.Drinks on ordr.DrinkId equals drink.Id
+            var staff = (from drink in db.Drinks
+                         join ordr in db.BarOrders on drink.Id equals ordr.DrinkId into
+                         lft from x in lft.DefaultIfEmpty()
                          group drink by new
                          {
                              drink.Name,
@@ -109,7 +110,7 @@ namespace Restaurant.Controllers
                          select new
                          {
                              ord.Key.Name,
-                             Number = ord.Count(),
+                             Number = ord.Key.Id != null ? ord.Count(),
                              Cost = ord.Key.Price
                          });
             return Json(staff, JsonRequestBehavior.AllowGet);
