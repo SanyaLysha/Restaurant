@@ -11,16 +11,22 @@ var Chart = {
             theme: "light2",
             animationEnabled: true,
             title: {
-                text: "Basic Column Chart"
+                text: "Number of Sold Drinks"
+            },
+            axisX: {
+                interval: 1
+            },
+            axisY: {
+                interval: 1
             },
             data: [
                 {
-                    type: "column",
+                    type: "bar",
                     dataPoints: this.dataPoints
                 }
             ]
         });
-        $.getJSON("/data/GetTodaySoldDrinks", function (data) {
+        $.post("/data/GetTodaySoldDrinks", { dt: $('#dateTxt').val() },function (data) {
             data.forEach(function (item) {
                 Chart.dataPoints.push({
                     label: item.Name,

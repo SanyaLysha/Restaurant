@@ -1,7 +1,8 @@
-﻿@using (Ajax.BeginForm("DailyReport", "Account", null))
+﻿@model Restaurant.Models.Reports.DailyReportViewModel
+@using (Html.BeginForm("DailyReport", "Account", null))
 {
     <div class="text-right mg-tb5">
-        Select Date <input type="text" id="dateTxt" name="dateTxt" />
+        Select Date <input type="text" id="dateTxt" name="dateTxt" value="@Model.dt.ToShortDateString()" />
         <input type="submit" value="Rebuild Report" />
     </div>
     Html.RenderPartial("PartialDailyReport");

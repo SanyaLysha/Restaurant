@@ -1,8 +1,11 @@
 ﻿using Restaurant.Entities;
 using Restaurant.Models;
+using Restaurant.Models.Reports;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.SqlServer;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -11,6 +14,7 @@ namespace Restaurant.Controllers
     public class DataController : Controller
     {
         private AppDbContext db = new AppDbContext();
+        SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString);
         private List<Dish> dishItems;
 
         [HttpGet]
@@ -96,24 +100,31 @@ namespace Restaurant.Controllers
                          });
             return Json(staff, JsonRequestBehavior.AllowGet);
         }
-        [HttpGet]
-        public ActionResult GetTodaySoldDrinks()
+        [HttpPost]
+        public ActionResult GetTodaySoldDrinks(string dt)
         {
-            var staff = (from drink in db.Drinks
-                         join ordr in db.BarOrders on drink.Id equals ordr.DrinkId into
-                         lft from x in lft.DefaultIfEmpty()
-                         group drink by new
-                         {
-                             drink.Name,
-                             drink.Price
-                         } into ord
-                         select new
-                         {
-                             ord.Key.Name,
-                             Number = ord.Key.Id != null ? ord.Count(),
-                             Cost = ord.Key.Price
-                         });
-            return Json(staff, JsonRequestBehavior.AllowGet);
+            var sqltxt = "SELECT d.Name, CASE WHEN bo.DrinkId IS NULL THEN 0 ELSE COUNT(*) END AS Number " +
+                " FROM Drinks d LEFT JOIN BarOrders bo ON bo.DrinkId = d.Id " +
+                " LEFT JOIN Orders o on o.Id=bo.OrderId " +
+                " WHERE CONVERT(date, o.Date) LIKE CONVERT(date, @dt)" +
+                " GROUP BY d.Name, bo.DrinkId";
+            SqlCommand cmd = new SqlCommand(sqltxt, conn);
+            cmd.Parameters.Add(new SqlParameter("@dt", dt));
+            DataTable dataTable = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            conn.Open();
+            adapter.Fill(dataTable);
+            conn.Close();
+            List<ProductModel> products = new List<ProductModel>();
+            foreach (DataRow r in dataTable.Rows)
+            {
+                products.Add(new ProductModel()
+                {
+                    Name = r["Name"].ToString(),
+                    Number = (int)r["Number"]
+                });
+            }
+            return Json(products, JsonRequestBehavior.AllowGet);
         }
     }
 }
