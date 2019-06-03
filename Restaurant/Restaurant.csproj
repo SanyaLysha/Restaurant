@@ -204,6 +204,10 @@
     <Compile Include="Migrations\201905311315059_changeType.Designer.cs">
       <DependentUpon>201905311315059_changeType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906031357575_addColumns.cs" />
+    <Compile Include="Migrations\201906031357575_addColumns.Designer.cs">
+      <DependentUpon>201906031357575_addColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AppDbContext.cs" />
@@ -326,6 +330,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905311315059_changeType.resx">
       <DependentUpon>201905311315059_changeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031357575_addColumns.resx">
+      <DependentUpon>201906031357575_addColumns.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
