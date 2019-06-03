@@ -34,7 +34,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Admin
                         </a>
-                        <div class="dropdown-menu" style="background-color:#101010">
+                        <div class="dropdown-menu" style="background-color:#080808">
                             @Html.ActionLink("UserManagment", "UserManagment", "Account", "", new { @class = "nav-dropdown-item" })
                             @Html.ActionLink("LinkOther", "", "", "", new { @class = "nav-dropdown-item" })
                         </div>
@@ -43,10 +43,18 @@
                         <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
                             Reports
                         </a>
-                        <div class="dropdown-menu" style="background-color:#101010">
+                        <div class="dropdown-menu" style="background-color:#080808">
                             @Html.ActionLink("Daily", "DailyReport", "Account", "", new { @class = "nav-dropdown-item" })
                             @Html.ActionLink("Monthly", "MonthlyReport", "Account", "", new { @class = "nav-dropdown-item" })
                             @Html.ActionLink("Annualy", "", "", "", new { @class = "nav-dropdown-item" })
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                            Staff
+                        </a>
+                        <div class="dropdown-menu" style="background-color:#080808">
+                            @Html.ActionLink("Orders", "Orders", "Account", "", new { @class = "nav-dropdown-item" })
                         </div>
                     </li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>

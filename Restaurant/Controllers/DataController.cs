@@ -153,5 +153,24 @@ namespace Restaurant.Controllers
             }
             return Json(visits, JsonRequestBehavior.AllowGet);
         }
+        [HttpGet]
+        public ActionResult GetOpenOrders()
+        {
+            var query = (from ordr in db.Orders
+                         join bo in db.BarOrders on ordr.Id equals bo.OrderId
+                         join ko in db.KitchenOrders on ordr.Id equals ko.OrderId
+                         where ordr.Paid == false
+                         select new OrderViewModel()
+                         {
+                             OrderId = ordr.Id,
+                             PersonId = ordr.PersonId,
+                             PersonFullName = String.Format("{0} {1}", ordr.Person.FirstName, ordr.Person.LastName),
+                             Paid = ordr.Paid,
+                             TableId = ordr.TableId
+
+                         }
+                         );
+            return Json(query, JsonRequestBehavior.AllowGet);
+        }
     }
 }

@@ -97,6 +97,12 @@ namespace Restaurant.Controllers
             MonthlyReportViewModel model = new MonthlyReportViewModel(Convert.ToDateTime(dateTxtFrom), Convert.ToDateTime(dateTxtTo));
             return View(model);
         }
+
+        [AllowAnonymous]
+        public ActionResult Orders()
+        {
+            return View();
+        }
         //
         // POST: /Account/Login
         [HttpPost]

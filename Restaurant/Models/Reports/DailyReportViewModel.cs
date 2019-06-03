@@ -115,6 +115,7 @@ namespace Restaurant.Models.Reports
     {
         public string Name { get; set; }
         public int Number { get; set; }
+        public int Volume { get; set; }
         public float Cost { get; set; }
     }
     public class Waiter
@@ -125,4 +126,5 @@ namespace Restaurant.Models.Reports
         public int Salary { get; set; }
         public int OrdersCount { get; set; }
     }
+
 }
